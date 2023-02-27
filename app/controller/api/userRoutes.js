@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+
+// new user
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -17,37 +19,6 @@ router.post("/", async (req, res) => {
 });
 
 
-router.put("/:id", async (req, res) => {
-  try {
-    const userData = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json(userData);
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const userData = await User.findByIdAndDelete(req.params.id);
-
-    req.session.save(() => {
-      req.session.user_id;
-      req.session.logged_in = false;
-
-      res.status(200).json(userData);
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
 
 router.post("/login", async (req, res) => {
   try {
