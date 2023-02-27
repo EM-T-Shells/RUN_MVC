@@ -1,13 +1,13 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../config/database");
 
-class Category extends Model {
+class Comment extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
-Category.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,8 +15,8 @@ Category.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     post_id: {
@@ -27,14 +27,22 @@ Category.init(
         key: "id",
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "Category",
+    modelName: "Comment",
   }
 );
 
-module.exports = Category;
+module.exports = Comment;

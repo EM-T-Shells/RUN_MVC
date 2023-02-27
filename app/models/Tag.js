@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../config/database");
 
 class Tag extends Model {
   checkPassword(loginPw) {

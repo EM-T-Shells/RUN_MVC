@@ -1,21 +1,23 @@
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
-const exphbs = require("express-handlebars");
+const hbs = require("express-handlebars");
 const routes = require("./controllers");
-const helpers = require("./utils/helpers");
-const dotenv = require("dotenv").config();
+// const helpers = require("./utils/helpers");
+const dotenv = require("dotenv").config()
 // dotenv package will search any file containing ".env"
+
 const sequelize = require("./config/database");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+// const hbs = exphbs.create({ helpers });
+
 
 const sess = {
-  secret: process.dotenv.secret,
+  secret: process.env.secret,
   cookie: {
     maxAge: 300000,
     httpOnly: true,

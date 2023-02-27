@@ -1,11 +1,11 @@
 {
   "name": "run_mvc",
   "version": "1.0.0",
-  "description": "Das MVC paradigm full stack blog kod.",
-  "main": "index.js",
+  "description": "MVC paradigm full stack blog kod",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
     "seed": "seeds/seed.js"
   },
   "keywords": [],
